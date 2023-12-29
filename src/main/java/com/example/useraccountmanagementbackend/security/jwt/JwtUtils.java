@@ -13,7 +13,9 @@ import com.example.useraccountmanagementbackend.security.services.UserDetailsImp
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-
+/**
+ * @author blaise
+ */
 @Component
 public class JwtUtils {
   private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);

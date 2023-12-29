@@ -14,7 +14,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "USERS", uniqueConstraints = @UniqueConstraint(columnNames = "EMAIL"))
+@Table(name = "USERS", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "EMAIL"),
+        @UniqueConstraint(columnNames = "USERNAME")})
 @Data
 public class User {
     @Id
@@ -24,16 +26,16 @@ public class User {
     private String firstName;
     @Column(name="LAST_NAME", length = 20)
     private String lastName;
-    @Column(name = "GENDER", nullable = true)
+    @Column(name = "GENDER")
     @Enumerated(EnumType.STRING)
     private EGender gender;
     @Column(name = "STATUS", nullable = false)
     @Enumerated(EnumType.STRING)
     private EStatus status;
-    @Column(name = "MARITAL_STATUS", nullable = true)
+    @Column(name = "MARITAL_STATUS")
     @Enumerated(EnumType.STRING)
     private EMaritalStatus maritalStatus;
-    @Column(name= "PHOTO")
+    @Column(name= "PHOTO", length=50)
     private String photo;
     @Column(name="EMAIL", length = 20, nullable = false)
     private String email;
@@ -48,6 +50,10 @@ public class User {
     private LocalDate dateOfBirth;
     @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(name="IDENTIFICATION", length = 16)
+    private String identification;
+    @Column(name="identificationDocument", length=50)
+    private String identificationDocument;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(  name = "user_roles",

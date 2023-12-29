@@ -8,35 +8,26 @@ import java.util.stream.Collectors;
 
 import com.example.useraccountmanagementbackend.domain.User;
 import com.example.useraccountmanagementbackend.enumerator.ERole;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * @author blaise
+ */
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
-
+  @Getter
   private UUID id;
-
   private String username;
+  @Getter
   private ERole role;
-
+  @Getter
   private String email;
-
   @JsonIgnore
   private String password;
-
   private Collection<? extends GrantedAuthority> authorities;
-
-//  public UserDetailsImpl(UUID id, String username, String email, String password,
-//                         Collection<? extends GrantedAuthority> authorities) {
-//    this.id = id;
-//    this.username = username;
-//    this.email = email;
-//    this.password = password;
-//    this.authorities = authorities;
-//  }
-
 
   public UserDetailsImpl(UUID id, String username, ERole role, String email, String password, Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
@@ -66,14 +57,6 @@ public class UserDetailsImpl implements UserDetails {
     return authorities;
   }
 
-  public UUID getId() {
-    return id;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
   @Override
   public String getPassword() {
     return password;
@@ -82,10 +65,6 @@ public class UserDetailsImpl implements UserDetails {
   @Override
   public String getUsername() {
     return username;
-  }
-
-  public ERole getRole() {
-    return role;
   }
 
   public void setRole(ERole role) {

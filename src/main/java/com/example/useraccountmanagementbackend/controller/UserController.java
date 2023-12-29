@@ -25,7 +25,7 @@ public class UserController {
 
     @PostMapping("/update")
     public ResponseEntity<?> updateUser(@RequestBody User user) {
-            return new ResponseEntity<User>(userService.signup(user), HttpStatus.CREATED);
+            return new ResponseEntity<User>(userService.updateUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/find")
